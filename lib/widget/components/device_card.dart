@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_security/domain/entities/device_model.dart';
+import 'package:smart_home_security/widget/pages/led_page.dart';
 
 class DeviceCard extends StatefulWidget {
   const DeviceCard({super.key, required this.device, required this.icon});
@@ -17,12 +18,11 @@ class _DeviceCardState extends State<DeviceCard> {
     bool active = false;
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //       builder: (context) =>
-        //           NewsDetailPage(news: news, isFavourite: isFavourite)),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Ledpage(pageTitile: widget.device.name)),
+        );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -48,6 +48,7 @@ class _DeviceCardState extends State<DeviceCard> {
                     setState(() {
                       active = value;
                     });
+                    print(active);
                   },
                 ),
               ],
