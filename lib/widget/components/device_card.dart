@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_security/domain/entities/device_model.dart';
 
-class DeviceCard extends StatelessWidget {
+class DeviceCard extends StatefulWidget {
   const DeviceCard({super.key, required this.device, required this.icon});
   final DeviceModel device;
   final IconData icon;
 
   @override
+  State<DeviceCard> createState() => _DeviceCardState();
+}
+
+class _DeviceCardState extends State<DeviceCard> {
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    bool active = false;
     return GestureDetector(
       onTap: () {
         // Navigator.push(
@@ -27,27 +33,29 @@ class DeviceCard extends StatelessWidget {
           color: theme.colorScheme.primary,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Row(
+        child: Column(
           children: [
-            // Flexible(
-            //   child: NewsCacheImage(
-            //     width: 220,
-            //     height: 160,
-            //     news.urlToImage,
-            //     fit: BoxFit.fill,
-            //   ),
-            // ),
-            const SizedBox(width: 16),
-            Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(device.name, style: theme.textTheme.titleMedium),
-                  const SizedBox(height: 16),
-                  Icon(icon),
-                ],
-              ),
-            )
+            Row(
+              children: [
+                Icon(
+                  widget.icon,
+                  size: 40,
+                ),
+                const SizedBox(width: 40),
+                Switch.adaptive(
+                  value: active,
+                  onChanged: (bool value) {
+                    setState(() {
+                      active = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 80),
+            Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(widget.device.name)),
           ],
         ),
       ),
