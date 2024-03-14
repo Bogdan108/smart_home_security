@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 
 class Ledpage extends StatefulWidget {
-  const Ledpage({super.key, required this.pageTitile});
+  const Ledpage({super.key, this.pageTitile = "SmartHome"});
   final String pageTitile;
   @override
   State<Ledpage> createState() => _LedpageState();

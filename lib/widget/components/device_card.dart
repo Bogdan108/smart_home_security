@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_security/domain/entities/device_model.dart';
-import 'package:smart_home_security/widget/pages/led_page.dart';
 
 class DeviceCard extends StatefulWidget {
-  const DeviceCard({super.key, required this.device, required this.icon});
+  const DeviceCard(
+      {super.key,
+      required this.device,
+      required this.icon,
+      required this.page});
   final DeviceModel device;
   final IconData icon;
-
+  final Widget page;
   @override
   State<DeviceCard> createState() => _DeviceCardState();
 }
 
 class _DeviceCardState extends State<DeviceCard> {
+  bool active = false;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    bool active = false;
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => Ledpage(pageTitile: widget.device.name)),
+          MaterialPageRoute(builder: (context) => widget.page),
         );
       },
       child: Container(
@@ -36,19 +39,18 @@ class _DeviceCardState extends State<DeviceCard> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Icon(
                   widget.icon,
                   size: 40,
                 ),
-                const SizedBox(width: 40),
                 Switch.adaptive(
                   value: active,
                   onChanged: (bool value) {
                     setState(() {
                       active = value;
                     });
-                    print(active);
                   },
                 ),
               ],
