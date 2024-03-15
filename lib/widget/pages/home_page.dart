@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_security/domain/entities/device_model.dart';
 import 'package:smart_home_security/widget/components/device_card.dart';
+import 'package:smart_home_security/widget/pages/camera_page.dart';
 import 'package:smart_home_security/widget/pages/clock_page.dart';
 import 'package:smart_home_security/widget/pages/led_page.dart';
 
@@ -25,6 +26,10 @@ class _HomePageState extends State<HomePage> {
         page: ClockPage(
           pageTitile: "Clock",
         )),
+    const DeviceCard(
+        device: DeviceModel(name: "Camera"),
+        icon: Icons.photo_camera_outlined,
+        page: CameraPage()),
   ];
 
   @override
@@ -34,6 +39,14 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: theme.colorScheme.background,
       appBar: AppBar(
         title: const Text("Smart Home"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              // Действие при нажатии на иконку
+            },
+          ),
+        ],
       ),
       body: GridView.builder(
           itemCount: devices.length,

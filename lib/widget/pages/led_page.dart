@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
+import 'package:smart_home_security/core/utils/utils.dart';
 
 class Ledpage extends StatefulWidget {
   const Ledpage({super.key, this.pageTitile = "SmartHome"});
@@ -28,6 +30,10 @@ class _LedpageState extends State<Ledpage> {
 
   void _onColorChanged(Color color) {
     setState(() => _currentColor = color);
-    print(_currentColor);
+    setColor(_currentColor, "172.20.10.4");
+    //TODO убрать из функций принты
+    if (kDebugMode) {
+      print(_currentColor);
+    }
   }
 }
