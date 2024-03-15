@@ -23,9 +23,7 @@ class _HomePageState extends State<HomePage> {
     const DeviceCard(
         device: DeviceModel(name: "Clock"),
         icon: Icons.alarm,
-        page: ClockPage(
-          pageTitile: "Clock",
-        )),
+        page: ClockPage()),
     const DeviceCard(
         device: DeviceModel(name: "Camera"),
         icon: Icons.photo_camera_outlined,
