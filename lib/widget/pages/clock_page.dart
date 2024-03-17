@@ -20,6 +20,7 @@ class _ClockPageState extends State<ClockPage> {
         title: const Text('Alarm with Sunrise'),
       ),
       body: ListView(
+        padding: const EdgeInsets.all(20),
         children: [
           Center(
             child: Column(

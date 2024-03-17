@@ -73,8 +73,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse(
-          'https://runtime.strm.yandex.ru/player/episode/vple7umxm54i7kf5jdng?autoplay=0&mute=0&tv=0&mute=1&autoplay=1&play_on_visible=true&hidden=sound'));
+      ..loadRequest(Uri.parse('http://172.20.10.6'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {

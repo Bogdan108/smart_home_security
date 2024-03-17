@@ -12,25 +12,43 @@ class Ledpage extends StatefulWidget {
 
 class _LedpageState extends State<Ledpage> {
   Color _currentColor = const Color.fromARGB(255, 29, 30, 31);
-
+  bool active = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.pageTitile),
       ),
-      body: Center(
-        child: CircleColorPicker(
-          strokeWidth: 16,
-          onChanged: _onColorChanged,
-        ),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          Center(
+            child: CircleColorPicker(
+              strokeWidth: 16,
+              onChanged: _onColorChanged,
+            ),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          Switch.adaptive(
+            value: active,
+            onChanged: (bool value) {
+              setState(
+                () {
+                  active = value;
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
 
   void _onColorChanged(Color color) {
     setState(() => _currentColor = color);
-    setColor(_currentColor, "172.20.10.4");
+    setColor(_currentColor, "172.20.10.6");
     //TODO убрать из функций принты
     if (kDebugMode) {
       print(_currentColor);

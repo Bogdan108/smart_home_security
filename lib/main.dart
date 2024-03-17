@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_security/core/custom_theme.dart';
+import 'package:smart_home_security/core/theme/custom_theme.dart';
 import 'package:smart_home_security/widget/pages/home_page.dart';
 
 void main() {

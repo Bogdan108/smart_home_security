@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:smart_home_security/domain/entities/device_model.dart';
 import 'package:smart_home_security/widget/components/device_card.dart';
 import 'package:smart_home_security/widget/pages/camera_page.dart';
@@ -34,24 +35,55 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
-      appBar: AppBar(
-        title: const Text("Smart Home"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Действие при нажатии на иконку
-            },
+        backgroundColor: theme.colorScheme.background,
+        appBar: AppBar(
+          title: const Text("Smart Home"),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                // Действие при нажатии на иконку
+              },
+            ),
+          ],
+        ),
+        body: Column(children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primary,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Добрый вечер, Богдан',
+                  style: TextStyle(fontSize: 20),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Действие при нажатии на кнопку
+                  },
+                  child: Icon(
+                    Icons.add,
+                    color: theme.colorScheme.onSecondary,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
-      body: GridView.builder(
-          itemCount: devices.length,
-          padding: const EdgeInsets.all(12),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, mainAxisSpacing: 15, crossAxisSpacing: 15),
-          itemBuilder: (BuildContext context, int index) => devices[index]),
-    );
+          Expanded(
+            child: GridView.builder(
+                itemCount: devices.length,
+                padding: const EdgeInsets.all(12),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15),
+                itemBuilder: (BuildContext context, int index) =>
+                    devices[index]),
+          ),
+        ]));
   }
 }
