@@ -5,12 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/widget_list.dart';
-import 'package:smart_home_security/domain/entities/device_model.dart';
-import 'package:smart_home_security/widget/components/add_device_dialog.dart';
-import 'package:smart_home_security/widget/components/device_card.dart';
-import 'package:smart_home_security/widget/pages/camera_page.dart';
-import 'package:smart_home_security/widget/pages/clock_page.dart';
-import 'package:smart_home_security/widget/pages/led_page.dart';
+import 'package:smart_home_security/features/domain/entities/device_model.dart';
+import 'package:smart_home_security/features/widget/components/add_device_dialog.dart';
+import 'package:smart_home_security/features/widget/components/device_card.dart';
+import 'package:smart_home_security/features/widget/pages/camera_page.dart';
+import 'package:smart_home_security/features/widget/pages/clock_page.dart';
+import 'package:smart_home_security/features/widget/pages/led_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

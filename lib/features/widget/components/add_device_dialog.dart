@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/widget_list.dart';
-import 'package:smart_home_security/domain/entities/device_model.dart';
+import 'package:smart_home_security/features/domain/entities/device_model.dart';
 
 class AddDeviceButton extends StatefulWidget {
   const AddDeviceButton({super.key});
@@ -37,6 +37,7 @@ class _AddDeviceButtonState extends State<AddDeviceButton> {
                   controller: _deviceNameController,
                   decoration: const InputDecoration(hintText: 'Имя устройства'),
                 ),
+                //TODO: исправить неизменяемость при выборе в списке
                 DropdownButton<DeviceType>(
                   value: _deviceType,
                   onChanged: (DeviceType? newValue) {

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/utils.dart';
-import 'package:smart_home_security/domain/entities/device_model.dart';
+import 'package:smart_home_security/features/domain/entities/device_model.dart';
 
 class Ledpage extends StatefulWidget {
   const Ledpage(
-      {super.key, this.pageTitile = "SmartHome", required this.devModel});
+      {super.key, this.pageTitile = "Led Page", required this.devModel});
   final String pageTitile;
   final DeviceModel devModel;
   @override
