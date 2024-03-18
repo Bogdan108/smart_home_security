@@ -72,11 +72,13 @@ class _HomePageState extends State<HomePage> {
                 switch (devices[index].type) {
                   case DeviceType.camera:
                     icon = Icons.camera_alt_outlined;
-                    page = const CameraPage();
+                    page = CameraPage(devModel: devices[index]);
                     break;
                   case DeviceType.led:
                     icon = Icons.lightbulb_outline_sharp;
-                    page = const Ledpage();
+                    page = Ledpage(
+                      devModel: devices[index],
+                    );
                     break;
                   case DeviceType.clock:
                     icon = Icons.watch_later_outlined;

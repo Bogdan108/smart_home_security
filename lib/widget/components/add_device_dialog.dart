@@ -14,7 +14,7 @@ class AddDeviceButton extends StatefulWidget {
 class _AddDeviceButtonState extends State<AddDeviceButton> {
   final TextEditingController _deviceNameController = TextEditingController();
   final TextEditingController _deviceIpController = TextEditingController();
-  String _deviceType = 'Тип 1';
+  DeviceType _deviceType = DeviceType.camera;
 
   @override
   void dispose() {
@@ -27,6 +27,7 @@ class _AddDeviceButtonState extends State<AddDeviceButton> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        final theme = Theme.of(context);
         return AlertDialog(
           title: const Text('Добавить устройство'),
           content: SingleChildScrollView(
@@ -34,49 +35,51 @@ class _AddDeviceButtonState extends State<AddDeviceButton> {
               children: <Widget>[
                 TextFormField(
                   controller: _deviceNameController,
-                  decoration:
-                      const InputDecoration(hintText: 'Введите имя устройства'),
+                  decoration: const InputDecoration(hintText: 'Имя устройства'),
                 ),
-                DropdownButton<String>(
+                DropdownButton<DeviceType>(
                   value: _deviceType,
-                  onChanged: (String? newValue) {
+                  onChanged: (DeviceType? newValue) {
                     setState(() {
                       _deviceType = newValue!;
                     });
                   },
-                  items: <String>['Тип 1', 'Тип 2', 'Тип 3']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
+                  items: DeviceType.values
+                      .map<DropdownMenuItem<DeviceType>>((DeviceType value) {
+                    return DropdownMenuItem<DeviceType>(
                       value: value,
-                      child: Text(value),
+                      child: Text(value.toString().split('.').last),
                     );
                   }).toList(),
                 ),
                 TextFormField(
                   controller: _deviceIpController,
-                  decoration: const InputDecoration(
-                      hintText: 'Введите IP адрес устройства'),
+                  decoration:
+                      const InputDecoration(hintText: 'IP адрес устройства'),
                 ),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Отмена'),
+              child: Text(
+                'Отмена',
+                style: TextStyle(color: theme.colorScheme.inversePrimary),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: const Text('Добавить'),
+              child: Text(
+                'Добавить',
+                style: TextStyle(color: theme.colorScheme.inversePrimary),
+              ),
               onPressed: () {
-                // Здесь может быть код для добавления устройства
-                print(
-                    'Имя устройства: ${_deviceNameController.text}, Тип: $_deviceType, IP: ${_deviceIpController.text}');
                 Provider.of<DeviceList>(context, listen: false).add(
                   DeviceModel(
                       name: _deviceNameController.text,
-                      type: DeviceType.camera,
+                      type: _deviceType,
                       ip: _deviceIpController.text),
                 );
                 Navigator.of(context).pop();

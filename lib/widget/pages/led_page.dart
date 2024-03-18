@@ -1,11 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
+import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/utils.dart';
+import 'package:smart_home_security/domain/entities/device_model.dart';
 
 class Ledpage extends StatefulWidget {
-  const Ledpage({super.key, this.pageTitile = "SmartHome"});
+  const Ledpage(
+      {super.key, this.pageTitile = "SmartHome", required this.devModel});
   final String pageTitile;
+  final DeviceModel devModel;
   @override
   State<Ledpage> createState() => _LedpageState();
 }
@@ -37,6 +41,7 @@ class _LedpageState extends State<Ledpage> {
               setState(
                 () {
                   active = value;
+                  print(DeviceType.values.toString());
                 },
               );
             },
@@ -48,7 +53,8 @@ class _LedpageState extends State<Ledpage> {
 
   void _onColorChanged(Color color) {
     setState(() => _currentColor = color);
-    setColor(_currentColor, "172.20.10.6");
+    //"172.20.10.6"
+    setColor(_currentColor, widget.devModel.ip);
     //TODO убрать из функций принты
     if (kDebugMode) {
       print(_currentColor);

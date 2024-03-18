@@ -7,6 +7,7 @@ ThemeData darkTheme = ThemeData(
       background: Colors.grey[900]!,
       primary: Colors.grey[800]!,
       secondary: Colors.grey[700]!,
+      inversePrimary: Colors.white,
     ),
     textTheme: textTheme);
 
@@ -14,10 +15,10 @@ ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(color: Colors.white),
     colorScheme: ColorScheme.light(
-      background: Colors.grey[300]!,
-      primary: Colors.grey[50]!,
-      secondary: Colors.grey,
-    ),
+        background: Colors.grey[300]!,
+        primary: Colors.grey[50]!,
+        secondary: Colors.grey,
+        inversePrimary: Colors.black),
     textTheme: textTheme);
 
 const TextTheme textTheme = TextTheme(
