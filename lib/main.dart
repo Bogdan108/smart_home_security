@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/theme/custom_theme.dart';
+import 'package:smart_home_security/core/utils/widget_list.dart';
 import 'package:smart_home_security/widget/pages/home_page.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => DeviceList(),
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
