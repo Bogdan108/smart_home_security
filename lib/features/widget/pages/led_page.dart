@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/utils.dart';
-import 'package:smart_home_security/features/domain/entities/device_model.dart';
+import 'package:smart_home_security/features/domain/models/device_model.dart';
 
 class Ledpage extends StatefulWidget {
   const Ledpage(
@@ -41,7 +41,9 @@ class _LedpageState extends State<Ledpage> {
               setState(
                 () {
                   active = value;
-                  print(DeviceType.values.toString());
+                  print(
+                    DeviceType.values.toString(),
+                  );
                 },
               );
             },

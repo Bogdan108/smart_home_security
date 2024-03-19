@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/widget_list.dart';
-import 'package:smart_home_security/features/domain/entities/device_model.dart';
+import 'package:smart_home_security/features/domain/models/device_model.dart';
 
 class AddDeviceButton extends StatefulWidget {
   const AddDeviceButton({super.key});
@@ -37,21 +37,25 @@ class _AddDeviceButtonState extends State<AddDeviceButton> {
                   controller: _deviceNameController,
                   decoration: const InputDecoration(hintText: 'Имя устройства'),
                 ),
-                //TODO: исправить неизменяемость при выборе в списке
-                DropdownButton<DeviceType>(
-                  value: _deviceType,
-                  onChanged: (DeviceType? newValue) {
-                    setState(() {
-                      _deviceType = newValue!;
-                    });
-                  },
-                  items: DeviceType.values
-                      .map<DropdownMenuItem<DeviceType>>((DeviceType value) {
-                    return DropdownMenuItem<DeviceType>(
-                      value: value,
-                      child: Text(value.toString().split('.').last),
+                StatefulBuilder(
+                  builder: (BuildContext context, setState) {
+                    return DropdownButton<DeviceType>(
+                      value: _deviceType,
+                      onChanged: (DeviceType? newValue) {
+                        setState(() {
+                          _deviceType = newValue!;
+                        });
+                      },
+                      items: DeviceType.values
+                          .map<DropdownMenuItem<DeviceType>>(
+                              (DeviceType value) {
+                        return DropdownMenuItem<DeviceType>(
+                          value: value,
+                          child: Text(value.toString().split('.').last),
+                        );
+                      }).toList(),
                     );
-                  }).toList(),
+                  },
                 ),
                 TextFormField(
                   controller: _deviceIpController,
@@ -95,13 +99,14 @@ class _AddDeviceButtonState extends State<AddDeviceButton> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: ElevatedButton(
-      onPressed: () {
-        _showAddDeviceDialog();
-      },
-      child: const Icon(
-        Icons.add,
+      child: ElevatedButton(
+        onPressed: () {
+          _showAddDeviceDialog();
+        },
+        child: const Icon(
+          Icons.add,
+        ),
       ),
-    ));
+    );
   }
 }

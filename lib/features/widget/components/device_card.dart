@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_security/features/domain/entities/device_model.dart';
+import 'package:smart_home_security/features/domain/models/device_model.dart';
 
 class DeviceCard extends StatefulWidget {
   const DeviceCard(
@@ -55,10 +55,13 @@ class _DeviceCardState extends State<DeviceCard> {
                 ),
               ],
             ),
-            const SizedBox(height: 80),
+            const Flexible(
+              child: SizedBox(height: 80),
+            ),
             Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(widget.device.name)),
+              alignment: Alignment.bottomLeft,
+              child: Text(widget.device.name),
+            ),
           ],
         ),
       ),
