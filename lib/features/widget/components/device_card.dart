@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_security/features/domain/models/device_model.dart';
+import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 
 class DeviceCard extends StatefulWidget {
   const DeviceCard(
@@ -7,7 +7,7 @@ class DeviceCard extends StatefulWidget {
       required this.device,
       required this.icon,
       required this.page});
-  final DeviceModel device;
+  final DeviceEntity device;
   final IconData icon;
   final Widget page;
   @override

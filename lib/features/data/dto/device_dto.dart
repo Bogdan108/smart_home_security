@@ -2,22 +2,25 @@ import 'package:json_annotation/json_annotation.dart';
 part 'device_dto.g.dart';
 
 @JsonSerializable()
-class DeviceDTO {
-  final String id;
+class DeviceDto {
+  final int id;
   final String name;
-  final String roomId;
+  final int roomId;
   final String type;
   final bool state;
+  final String ip;
 
-  const DeviceDTO(
-      {required this.id,
-      required this.name,
-      required this.roomId,
-      required this.type,
-      required this.state});
+  const DeviceDto({
+    required this.id,
+    required this.name,
+    required this.roomId,
+    required this.type,
+    required this.state,
+    required this.ip,
+  });
 
-  factory DeviceDTO.fromJson(Map<String, dynamic> json) =>
-      _$DeviceDTOFromJson(json);
+  factory DeviceDto.fromJson(Map<String, dynamic> json) =>
+      _$DeviceDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DeviceDTOToJson(this);
+  Map<String, dynamic> toJson() => _$DeviceDtoToJson(this);
 }

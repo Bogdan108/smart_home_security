@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_security/features/domain/models/device_model.dart';
+import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key, required this.devModel});
-  final DeviceModel devModel;
+  final DeviceEntity devModel;
   @override
   State<CameraPage> createState() => _CameraPageState();
 }

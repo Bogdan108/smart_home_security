@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/widget_list.dart';
-import 'package:smart_home_security/features/domain/models/device_model.dart';
+import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 
 class AddDeviceButton extends StatefulWidget {
   const AddDeviceButton({super.key});
@@ -82,10 +82,13 @@ class _AddDeviceButtonState extends State<AddDeviceButton> {
               ),
               onPressed: () {
                 Provider.of<DeviceList>(context, listen: false).add(
-                  DeviceModel(
+                  DeviceEntity(
                       name: _deviceNameController.text,
                       type: _deviceType,
-                      ip: _deviceIpController.text),
+                      ip: _deviceIpController.text,
+                      state: false,
+                      roomId: 1,
+                      id: 1),
                 );
                 Navigator.of(context).pop();
               },

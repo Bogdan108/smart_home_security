@@ -1,15 +1,15 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:smart_home_security/features/domain/models/device_model.dart';
+import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 
 class DeviceList extends ChangeNotifier {
-  final List<DeviceModel> _devices = [];
+  final List<DeviceEntity> _devices = [];
 
-  UnmodifiableListView<DeviceModel> get devices =>
+  UnmodifiableListView<DeviceEntity> get devices =>
       UnmodifiableListView(_devices);
 
-  void add(DeviceModel device) {
+  void add(DeviceEntity device) {
     _devices.add(device);
 
     notifyListeners();

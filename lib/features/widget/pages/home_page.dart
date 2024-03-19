@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/widget_list.dart';
-import 'package:smart_home_security/features/domain/models/device_model.dart';
+import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 import 'package:smart_home_security/features/widget/components/add_device_dialog.dart';
 import 'package:smart_home_security/features/widget/components/device_card.dart';
 import 'package:smart_home_security/features/widget/pages/camera_page.dart';
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    UnmodifiableListView<DeviceModel> devices =
+    UnmodifiableListView<DeviceEntity> devices =
         Provider.of<DeviceList>(context, listen: true).devices;
     return Scaffold(
       backgroundColor: theme.colorScheme.background,
