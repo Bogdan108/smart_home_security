@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_home_security/core/di/di_container.dart';
 import 'package:smart_home_security/core/theme/custom_theme.dart';
 import 'package:smart_home_security/core/utils/widget_list.dart';
 import 'package:smart_home_security/features/widget/pages/home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DIContainer.instance.initDeps();
   runApp(
     ChangeNotifierProvider(
       create: (context) => DeviceList(),

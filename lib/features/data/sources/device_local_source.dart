@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_home_security/features/data/dto/device_dto.dart';
 import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
@@ -15,35 +14,34 @@ abstract interface class DeviceLocalDataSource {
 const GET_ALL = 'get_all';
 
 class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
-  final SharedPreferences sharedPreferences;
-  final DeviceMapper deviceMapper;
+  final SharedPreferences _sharedPreferences;
+  final DeviceMapper _deviceMapper;
   DeviceLocalDataSourceImpl(
-      {required this.sharedPreferences, required this.deviceMapper});
+      {required SharedPreferences sharedPreferences,
+      required DeviceMapper deviceMapper})
+      : _sharedPreferences = sharedPreferences,
+        _deviceMapper = deviceMapper;
 
   @override
   Future<void> addNewDevice(DeviceEntity device) async {
-    final jsonDeviceList = sharedPreferences.getStringList(GET_ALL);
+    final jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
     if (jsonDeviceList != null) {
-      jsonDeviceList
-          .add(json.encode(deviceMapper.mapDeviceEntityToDto(device).toJson()));
-      await sharedPreferences.setStringList(GET_ALL, jsonDeviceList);
+      jsonDeviceList.add(
+          json.encode(_deviceMapper.mapDeviceEntityToDto(device).toJson()));
+      await _sharedPreferences.setStringList(GET_ALL, jsonDeviceList);
     }
   }
 
   @override
   Future<List<DeviceEntity>> getAllDevices() {
-    try {
-      final jsonDeviceList = sharedPreferences.getStringList(GET_ALL);
-      if (jsonDeviceList != null) {
-        return Future.value(jsonDeviceList
-            .map((device) => deviceMapper
-                .mapDeviceDtoToEntity(DeviceDto.fromJson(json.decode(device))))
-            .toList());
-      } else {
-        return Future.value([]);
-      }
-    } catch (e) {
-      rethrow;
+    final jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
+    if (jsonDeviceList != null) {
+      return Future.value(jsonDeviceList
+          .map((device) => _deviceMapper
+              .mapDeviceDtoToEntity(DeviceDto.fromJson(json.decode(device))))
+          .toList());
+    } else {
+      return Future.value([]);
     }
   }
 }
