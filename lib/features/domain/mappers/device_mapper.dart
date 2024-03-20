@@ -2,7 +2,7 @@ import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/features/data/dto/device_dto.dart';
 import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 
-class deviceMapper {
+class DeviceMapper {
   DeviceEntity mapDeviceDtoToEntity(DeviceDto dto) => DeviceEntity(
       name: dto.name,
       type: stringToType(dto.type),
