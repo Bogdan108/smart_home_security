@@ -19,6 +19,15 @@ class DevicesLoaded extends DeviceState {
   List<Object> get props => [devices];
 }
 
+class DevicesAdded extends DeviceState {
+  final List<DeviceEntity> devices;
+
+  DevicesAdded({required this.devices});
+
+  @override
+  List<Object> get props => [devices];
+}
+
 class DevicesLoadingError extends DeviceState {
   final String exception;
 

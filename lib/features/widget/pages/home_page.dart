@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home_security/common/widget/custom_error_widget.dart';
 import 'package:smart_home_security/common/widget/custom_loading_indicator.dart';
-import 'package:smart_home_security/core/di/di_container.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/features/domain/bloc/device_event.dart';
 import 'package:smart_home_security/features/domain/bloc/device_state.dart';
@@ -96,15 +94,14 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(color: theme.colorScheme.inversePrimary),
               ),
               onPressed: () {
-                DIContainer.instance.deviceRepository.addDevice(
-                  DeviceEntity(
-                      name: _deviceNameController.text,
-                      type: _deviceType,
-                      ip: _deviceIpController.text,
-                      state: false,
-                      roomId: 1,
-                      id: 1),
-                );
+                bloc.add(AddDevices(
+                    device: DeviceEntity(
+                        name: _deviceNameController.text,
+                        type: _deviceType,
+                        ip: _deviceIpController.text,
+                        state: false,
+                        roomId: 1,
+                        id: 1)));
 
                 Navigator.of(context).pop();
               },
@@ -154,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(fontSize: 20),
                       ),
                       ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           _showAddDeviceDialog();
                         },
                         child: const Icon(
@@ -171,6 +168,7 @@ class _HomePageState extends State<HomePage> {
                     DevicesEmpty() => const CustomLoadingIndicator(),
                     DevicesLoading() => const CustomLoadingIndicator(),
                     DevicesLoaded() => DeviceGrid(devices: state.devices),
+                    DevicesAdded() => DeviceGrid(devices: state.devices),
                     DevicesLoadingError() => CustomErrorWidget(state.exception),
                   },
                 ),

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 
 sealed class DeviceEvent extends Equatable {
   @override
@@ -6,3 +7,11 @@ sealed class DeviceEvent extends Equatable {
 }
 
 class LoadDevices extends DeviceEvent {}
+
+class AddDevices extends DeviceEvent {
+  final DeviceEntity device;
+
+  AddDevices({required this.device});
+  @override
+  List<Object> get props => [device];
+}

@@ -6,7 +6,7 @@ import 'package:smart_home_security/features/domain/mappers/device_mapper.dart';
 
 abstract interface class DeviceLocalDataSource {
   List<DeviceEntity> getAllDevices();
-  void addNewDevice(DeviceEntity device);
+  Future<List<DeviceEntity>> addNewDevice(DeviceEntity device);
 }
 
 // пока не готов сервер, буду делать в локальной бд
@@ -23,7 +23,7 @@ class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
         _deviceMapper = deviceMapper;
 
   @override
-  Future<void> addNewDevice(DeviceEntity device) async {
+  Future<List<DeviceEntity>> addNewDevice(DeviceEntity device) async {
     var jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
     print(jsonDeviceList);
     if (jsonDeviceList != null) {
@@ -34,8 +34,8 @@ class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
       await _sharedPreferences.setStringList(GET_ALL,
           [json.encode(_deviceMapper.mapDeviceEntityToDto(device).toJson())]);
     }
-    jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
-    print(jsonDeviceList);
+
+    return Future.value(getAllDevices());
   }
 
   @override
