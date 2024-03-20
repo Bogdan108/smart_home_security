@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/di/di_container.dart';
 import 'package:smart_home_security/core/theme/custom_theme.dart';
-import 'package:smart_home_security/core/utils/widget_list.dart';
+import 'package:smart_home_security/features/domain/bloc/devices_bloc.dart';
 import 'package:smart_home_security/features/widget/pages/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DIContainer.instance.initDeps();
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => DeviceList(),
-      child: const MainApp(),
-    ),
-  );
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -21,10 +16,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        home: const HomePage());
+    return BlocProvider(
+      create: (context) =>
+          DeviceBloc(repo: DIContainer.instance.deviceRepository),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          home: const HomePage()),
+    );
   }
 }

@@ -5,8 +5,8 @@ import 'package:smart_home_security/features/domain/enteties/device_entity.dart'
 import 'package:smart_home_security/features/domain/mappers/device_mapper.dart';
 
 abstract interface class DeviceLocalDataSource {
-  Future<List<DeviceEntity>> getAllDevices();
-  Future<void> addNewDevice(DeviceEntity device);
+  List<DeviceEntity> getAllDevices();
+  void addNewDevice(DeviceEntity device);
 }
 
 // пока не готов сервер, буду делать в локальной бд
@@ -24,24 +24,30 @@ class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
 
   @override
   Future<void> addNewDevice(DeviceEntity device) async {
-    final jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
+    var jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
+    print(jsonDeviceList);
     if (jsonDeviceList != null) {
       jsonDeviceList.add(
           json.encode(_deviceMapper.mapDeviceEntityToDto(device).toJson()));
       await _sharedPreferences.setStringList(GET_ALL, jsonDeviceList);
+    } else {
+      await _sharedPreferences.setStringList(GET_ALL,
+          [json.encode(_deviceMapper.mapDeviceEntityToDto(device).toJson())]);
     }
+    jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
+    print(jsonDeviceList);
   }
 
   @override
-  Future<List<DeviceEntity>> getAllDevices() {
+  List<DeviceEntity> getAllDevices() {
     final jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
     if (jsonDeviceList != null) {
-      return Future.value(jsonDeviceList
+      return (jsonDeviceList
           .map((device) => _deviceMapper
               .mapDeviceDtoToEntity(DeviceDto.fromJson(json.decode(device))))
           .toList());
     } else {
-      return Future.value([]);
+      return [];
     }
   }
 }
