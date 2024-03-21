@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
+import 'package:smart_home_security/features/domain/bloc/device_event.dart';
 import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 import 'package:smart_home_security/features/widget/components/device_card.dart';
 import 'package:smart_home_security/features/widget/pages/camera_page.dart';
@@ -8,8 +10,8 @@ import 'package:smart_home_security/features/widget/pages/led_page.dart';
 
 class DeviceGrid extends StatelessWidget {
   final List<DeviceEntity> devices;
-
-  const DeviceGrid({super.key, required this.devices});
+  final Bloc bloc;
+  const DeviceGrid({super.key, required this.devices, required this.bloc});
 
   @override
   Widget build(BuildContext context) => GridView.builder(
@@ -37,7 +39,20 @@ class DeviceGrid extends StatelessWidget {
               break;
           }
 
-          return DeviceCard(device: devices[index], icon: icon, page: page);
+          return Dismissible(
+              key: UniqueKey(),
+              direction: DismissDirection.endToStart,
+              onDismissed: (direction) {
+                bloc.add(DeleteDevice(device: devices[index]));
+              },
+              background: Container(
+                color: Colors.red,
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.only(right: 20.0),
+                child: const Icon(Icons.delete),
+              ),
+              child:
+                  DeviceCard(device: devices[index], icon: icon, page: page));
         },
       );
 }

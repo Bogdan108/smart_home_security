@@ -11,6 +11,7 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
     on<DeviceEvent>((event, emit) => switch (event) {
           LoadDevices() => _load(emit),
           AddDevices() => _add(event, emit),
+          DeleteDevice() => _delete(event, emit),
         });
   }
 
@@ -34,7 +35,21 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
       final devicesList = await _deviceRepository.addDevice(event.device);
       emit(DevicesAdded(devices: devicesList));
     } catch (e) {
-      emit(DevicesLoadingError(exception: 'Error of loading News $e'));
+      emit(DevicesLoadingError(exception: 'Error of adding News $e'));
+      rethrow;
+    }
+  }
+
+  Future<void> _delete(
+    DeleteDevice event,
+    Emitter<DeviceState> emit,
+  ) async {
+    emit(DevicesLoading());
+    try {
+      final devicesList = await _deviceRepository.deleteDevice(event.device);
+      emit(DevicesDeleted(devices: devicesList));
+    } catch (e) {
+      emit(DevicesLoadingError(exception: 'Error of deleting News $e'));
       rethrow;
     }
   }

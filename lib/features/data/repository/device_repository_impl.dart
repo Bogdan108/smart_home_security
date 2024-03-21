@@ -17,4 +17,9 @@ class DeviceRepositoryImpl implements DeviceRepository {
   Future<List<DeviceEntity>> addDevice(DeviceEntity device) {
     return Future.value(_localSource.addNewDevice(device));
   }
+
+  @override
+  Future<List<DeviceEntity>> deleteDevice(DeviceEntity device) {
+    return Future.value(_localSource.deleteDevice(device));
+  }
 }

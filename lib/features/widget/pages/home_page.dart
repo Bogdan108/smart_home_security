@@ -167,9 +167,19 @@ class _HomePageState extends State<HomePage> {
                   builder: (context, state) => switch (state) {
                     DevicesEmpty() => const CustomLoadingIndicator(),
                     DevicesLoading() => const CustomLoadingIndicator(),
-                    DevicesLoaded() => DeviceGrid(devices: state.devices),
-                    DevicesAdded() => DeviceGrid(devices: state.devices),
+                    DevicesLoaded() => DeviceGrid(
+                        devices: state.devices,
+                        bloc: bloc,
+                      ),
+                    DevicesAdded() => DeviceGrid(
+                        devices: state.devices,
+                        bloc: bloc,
+                      ),
                     DevicesLoadingError() => CustomErrorWidget(state.exception),
+                    DevicesDeleted() => DeviceGrid(
+                        devices: state.devices,
+                        bloc: bloc,
+                      ),
                   },
                 ),
               ),

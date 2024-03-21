@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'device_dto.g.dart';
 
 @JsonSerializable()
-class DeviceDto {
+class DeviceDto extends Equatable {
   final int id;
   final String name;
   final int roomId;
@@ -23,4 +24,7 @@ class DeviceDto {
       _$DeviceDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$DeviceDtoToJson(this);
+
+  @override
+  List<Object?> get props => [name, ip, id, roomId, type, state];
 }

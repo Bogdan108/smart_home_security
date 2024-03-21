@@ -15,3 +15,11 @@ class AddDevices extends DeviceEvent {
   @override
   List<Object> get props => [device];
 }
+
+class DeleteDevice extends DeviceEvent {
+  final DeviceEntity device;
+
+  DeleteDevice({required this.device});
+  @override
+  List<Object> get props => [device];
+}
