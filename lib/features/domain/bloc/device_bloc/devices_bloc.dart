@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home_security/features/domain/repositories/device_repository.dart';
 
 class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
-  final DeviceRepository _deviceRepository;
   DeviceBloc({required DeviceRepository repo})
       : _deviceRepository = repo,
         super(DevicesEmpty()) {
@@ -14,6 +13,7 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
           DeleteDevice() => _delete(event, emit),
         });
   }
+  final DeviceRepository _deviceRepository;
 
   Future<void> _load(Emitter<DeviceState> emit) async {
     emit(DevicesLoading());
