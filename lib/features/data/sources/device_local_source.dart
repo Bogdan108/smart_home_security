@@ -54,12 +54,13 @@ class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
 
   @override
   Future<List<DeviceEntity>> deleteDevice(DeviceEntity device) async {
-    var jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
-
-    jsonDeviceList
-        ?.add(json.encode(_deviceMapper.mapDeviceEntityToDto(device).toJson()));
-    await _sharedPreferences.setStringList(GET_ALL, jsonDeviceList!);
-
+    List<String>? jsonDeviceList = _sharedPreferences.getStringList(GET_ALL);
+    if (jsonDeviceList != null) {
+      jsonDeviceList.removeWhere((element) =>
+          element ==
+          json.encode(_deviceMapper.mapDeviceEntityToDto(device).toJson()));
+      await _sharedPreferences.setStringList(GET_ALL, jsonDeviceList);
+    }
     return Future.value(getAllDevices());
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
-import 'package:smart_home_security/features/domain/bloc/device_event.dart';
+import 'package:smart_home_security/features/domain/bloc/device_bloc/device_event.dart';
 import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
 import 'package:smart_home_security/features/widget/components/device_card.dart';
 import 'package:smart_home_security/features/widget/pages/camera_page.dart';

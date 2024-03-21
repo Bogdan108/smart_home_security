@@ -77,7 +77,6 @@ Page resource error:
       ..loadRequest(Uri.parse('http://${widget.devModel.ip}'));
     //'http://172.20.10.6'
 
-    // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(true);
       (controller.platform as AndroidWebViewController)
