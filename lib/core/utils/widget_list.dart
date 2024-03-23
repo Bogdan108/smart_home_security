@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
 
 class DeviceList extends ChangeNotifier {
   final List<DeviceEntity> _devices = [];

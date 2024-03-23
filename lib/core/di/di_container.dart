@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smart_home_security/features/data/repository/device_repository_impl.dart';
-import 'package:smart_home_security/features/data/sources/device_local_source.dart';
-import 'package:smart_home_security/features/domain/mappers/device_mapper.dart';
-import 'package:smart_home_security/features/domain/repositories/device_repository.dart';
+import 'package:smart_home_security/features/device_feature/data/repository/device_repository_impl.dart';
+import 'package:smart_home_security/features/device_feature/data/sources/device_local_source.dart';
+import 'package:smart_home_security/features/device_feature/domain/mappers/device_mapper.dart';
+import 'package:smart_home_security/features/device_feature/domain/repositories/device_repository.dart';
 
 final class DIContainer {
   DIContainer._();

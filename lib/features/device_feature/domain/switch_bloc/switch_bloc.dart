@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_home_security/features/domain/bloc/switch_bloc/switch_event.dart';
-import 'package:smart_home_security/features/domain/bloc/switch_bloc/switch_state.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/switch_bloc/switch_event.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/switch_bloc/switch_state.dart';
+import 'package:smart_home_security/features/device_feature/domain/repositories/device_repository.dart';
 
 //TODO: переименовать блока для карточки
 class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
@@ -29,12 +30,7 @@ class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
       }
       emit(Switched(isActive: event.state));
     } catch (e) {
-      emit(
-        SwitchLoadingError(
-          exception: 'Error of adding News $e',
-          isActive: false,
-        ),
-      );
+      emit(SwitchLoadingError(exception: 'Error of adding News $e'));
       rethrow;
     }
   }

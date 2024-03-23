@@ -1,6 +1,6 @@
 import 'package:smart_home_security/core/utils/type_enum.dart';
-import 'package:smart_home_security/features/data/dto/device_dto.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/data/dto/device_dto.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
 
 class DeviceMapper {
   DeviceEntity mapDeviceDtoToEntity(DeviceDto dto) => DeviceEntity(

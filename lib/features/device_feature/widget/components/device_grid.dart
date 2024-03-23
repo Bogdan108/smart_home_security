@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
-import 'package:smart_home_security/features/domain/bloc/device_bloc/device_event.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
-import 'package:smart_home_security/features/widget/components/device_card.dart';
-import 'package:smart_home_security/features/widget/pages/camera_page.dart';
-import 'package:smart_home_security/features/widget/pages/clock_page.dart';
-import 'package:smart_home_security/features/widget/pages/led_page.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/device_bloc/device_event.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/widget/components/device_card.dart';
+import 'package:smart_home_security/features/device_feature/widget/pages/camera_page.dart';
+import 'package:smart_home_security/features/device_feature/widget/pages/clock_page.dart';
+import 'package:smart_home_security/features/device_feature/widget/pages/led_page.dart';
 
 class DeviceGrid extends StatelessWidget {
   final List<DeviceEntity> devices;

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
 
 sealed class DeviceState extends Equatable {
   @override

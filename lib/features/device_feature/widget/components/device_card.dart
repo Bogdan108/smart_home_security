@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_home_security/features/domain/bloc/switch_bloc/switch_bloc.dart';
-import 'package:smart_home_security/features/domain/bloc/switch_bloc/switch_event.dart';
-import 'package:smart_home_security/features/domain/bloc/switch_bloc/switch_state.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/switch_bloc/switch_bloc.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/switch_bloc/switch_event.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/switch_bloc/switch_state.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
 
 class DeviceCard extends StatefulWidget {
   const DeviceCard(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_security/core/di/di_container.dart';
 import 'package:smart_home_security/core/theme/custom_theme.dart';
-import 'package:smart_home_security/features/domain/bloc/device_bloc/devices_bloc.dart';
-import 'package:smart_home_security/features/widget/pages/home_page.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/device_bloc/devices_bloc.dart';
+import 'package:smart_home_security/features/device_feature/widget/pages/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {

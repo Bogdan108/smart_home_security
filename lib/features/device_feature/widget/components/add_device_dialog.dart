@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
 import 'package:smart_home_security/core/utils/widget_list.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
 
 class AddDeviceButton extends StatefulWidget {
   const AddDeviceButton({super.key});

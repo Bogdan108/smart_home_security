@@ -1,7 +1,7 @@
-import 'package:smart_home_security/features/domain/bloc/device_bloc/device_event.dart';
-import 'package:smart_home_security/features/domain/bloc/device_bloc/device_state.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/device_bloc/device_event.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/device_bloc/device_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_home_security/features/domain/repositories/device_repository.dart';
+import 'package:smart_home_security/features/device_feature/domain/repositories/device_repository.dart';
 
 class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   DeviceBloc({required DeviceRepository repo})

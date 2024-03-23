@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home_security/common/widget/custom_error_widget.dart';
 import 'package:smart_home_security/common/widget/custom_loading_indicator.dart';
 import 'package:smart_home_security/core/utils/type_enum.dart';
-import 'package:smart_home_security/features/domain/bloc/device_bloc/device_event.dart';
-import 'package:smart_home_security/features/domain/bloc/device_bloc/device_state.dart';
-import 'package:smart_home_security/features/domain/bloc/device_bloc/devices_bloc.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
-import 'package:smart_home_security/features/widget/components/device_grid.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/device_bloc/device_event.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/device_bloc/device_state.dart';
+import 'package:smart_home_security/features/device_feature/domain/bloc/device_bloc/devices_bloc.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/widget/components/device_grid.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

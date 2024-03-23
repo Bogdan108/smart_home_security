@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smart_home_security/features/data/dto/device_dto.dart';
-import 'package:smart_home_security/features/domain/enteties/device_entity.dart';
-import 'package:smart_home_security/features/domain/mappers/device_mapper.dart';
+import 'package:smart_home_security/features/device_feature/data/dto/device_dto.dart';
+import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
+import 'package:smart_home_security/features/device_feature/domain/mappers/device_mapper.dart';
 
 abstract interface class DeviceLocalDataSource {
   List<DeviceEntity> getAllDevices();
