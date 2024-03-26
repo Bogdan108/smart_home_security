@@ -4,7 +4,7 @@ import 'package:smart_home_security/features/device_feature/data/dto/device_dto.
 import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
 import 'package:smart_home_security/features/device_feature/domain/mappers/device_mapper.dart';
 
-abstract interface class DeviceLocalDataSource {
+abstract interface class DeviceNetworkDataProvider {
   List<DeviceEntity> getAllDevices();
   Future<List<DeviceEntity>> addNewDevice(DeviceEntity device);
   Future<List<DeviceEntity>> deleteDevice(DeviceEntity device);
@@ -14,10 +14,10 @@ abstract interface class DeviceLocalDataSource {
 // ignore: constant_identifier_names
 const GET_ALL = 'get_all';
 
-class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
+class DeviceNetworkDataProviderImpl implements DeviceNetworkDataProvider {
   final SharedPreferences _sharedPreferences;
   final DeviceMapper _deviceMapper;
-  DeviceLocalDataSourceImpl(
+  DeviceNetworkDataProviderImpl(
       {required SharedPreferences sharedPreferences,
       required DeviceMapper deviceMapper})
       : _sharedPreferences = sharedPreferences,

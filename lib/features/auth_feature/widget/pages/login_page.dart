@@ -7,6 +7,7 @@ import 'package:smart_home_security/features/auth_feature/domain/bloc/auth_bloc.
 import 'package:smart_home_security/features/auth_feature/widget/components/auth_button.dart';
 import 'package:smart_home_security/features/auth_feature/widget/components/change_auth_type_button.dart';
 import 'package:smart_home_security/features/auth_feature/widget/pages/register_page.dart';
+import 'package:smart_home_security/features/device_feature/widget/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const RegisterPage(),
+              builder: (context) => const HomePage(),
             ),
           );
           CustomSnackBar.showSuccessful(context, message: state.message);

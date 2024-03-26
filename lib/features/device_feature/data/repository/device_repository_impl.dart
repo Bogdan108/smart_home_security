@@ -1,11 +1,11 @@
-import 'package:smart_home_security/features/device_feature/data/sources/device_local_source.dart';
+import 'package:smart_home_security/features/device_feature/data/sources/device_network_data_provider.dart';
 import 'package:smart_home_security/features/device_feature/domain/enteties/device_entity.dart';
 import 'package:smart_home_security/features/device_feature/domain/repositories/device_repository.dart';
 
 class DeviceRepositoryImpl implements DeviceRepository {
-  final DeviceLocalDataSource _localSource;
+  final DeviceNetworkDataProvider _localSource;
 
-  DeviceRepositoryImpl({required DeviceLocalDataSource localSource})
+  DeviceRepositoryImpl({required DeviceNetworkDataProvider localSource})
       : _localSource = localSource;
 
   @override

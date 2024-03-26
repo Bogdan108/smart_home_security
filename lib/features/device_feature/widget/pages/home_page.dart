@@ -36,6 +36,8 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
+  List<String> rooms = ['Гостиная', 'Кухня', 'Спальня'];
+
   void _showAddDeviceDialog() {
     showDialog(
       context: context,
@@ -116,39 +118,58 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-        backgroundColor: theme.colorScheme.background,
-        appBar: AppBar(
-          title: const Text("Smart Home"),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () {
-                // Действие при нажатии на иконку
-              },
-            ),
-          ],
-        ),
-        body: RefreshIndicator(
-          onRefresh: () async {
-            bloc.add(LoadDevices());
-          },
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary,
-                    borderRadius: BorderRadius.circular(20),
+    return DefaultTabController(
+      length: rooms.length,
+      child: Scaffold(
+          backgroundColor: theme.colorScheme.background,
+          appBar: AppBar(
+            title: const Text("Smart Home"),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () {
+                  // Действие при нажатии на иконку
+                },
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(150.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Добрый вечер, Богдан',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              _showAddDeviceDialog();
+                            },
+                            child: const Icon(
+                              Icons.add,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Row(
                     children: [
-                      const Text(
-                        'Добрый вечер, Богдан',
-                        style: TextStyle(fontSize: 20),
+                      TabBar(
+                        isScrollable: true,
+                        tabs: rooms
+                            .map((String room) => Tab(text: room))
+                            .toList(),
                       ),
                       ElevatedButton(
                         onPressed: () async {
@@ -160,31 +181,45 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: BlocBuilder<DeviceBloc, DeviceState>(
-                  builder: (context, state) => switch (state) {
-                    DevicesEmpty() => const CustomLoadingIndicator(),
-                    DevicesLoading() => const CustomLoadingIndicator(),
-                    DevicesLoaded() => DeviceGrid(
-                        devices: state.devices,
-                        bloc: bloc,
-                      ),
-                    DevicesAdded() => DeviceGrid(
-                        devices: state.devices,
-                        bloc: bloc,
-                      ),
-                    DevicesLoadingError() => CustomErrorWidget(state.exception),
-                    DevicesDeleted() => DeviceGrid(
-                        devices: state.devices,
-                        bloc: bloc,
-                      ),
-                  },
-                ),
-              ),
-            ],
+            ),
           ),
-        ));
+          body: RefreshIndicator(
+            onRefresh: () async {
+              bloc.add(LoadDevices());
+            },
+            child: TabBarView(
+              children: [
+                Column(
+                  children: [
+                    Expanded(
+                      child: BlocBuilder<DeviceBloc, DeviceState>(
+                        builder: (context, state) => switch (state) {
+                          DevicesEmpty() => const CustomLoadingIndicator(),
+                          DevicesLoading() => const CustomLoadingIndicator(),
+                          DevicesLoaded() => DeviceGrid(
+                              devices: state.devices,
+                              bloc: bloc,
+                            ),
+                          DevicesAdded() => DeviceGrid(
+                              devices: state.devices,
+                              bloc: bloc,
+                            ),
+                          DevicesLoadingError() =>
+                            CustomErrorWidget(state.exception),
+                          DevicesDeleted() => DeviceGrid(
+                              devices: state.devices,
+                              bloc: bloc,
+                            ),
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )),
+    );
   }
 }

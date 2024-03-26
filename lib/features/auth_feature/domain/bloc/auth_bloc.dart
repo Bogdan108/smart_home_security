@@ -85,10 +85,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       //   event.username,
       //   event.password,
       // );
-      emit(const AuthState.successful(
-        isAuthenticated: true,
-        message: 'Вы успешно вошли',
-      ));
+      emit(
+        const AuthState.successful(
+          isAuthenticated: true,
+          message: 'Вы успешно вошли',
+        ),
+      );
     } on Object catch (e) {
       emit(AuthState.error(
         isAuthenticated: state.isAuthenticated,
